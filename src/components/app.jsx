@@ -16,8 +16,8 @@ class App extends Component {
       selectedGifId: "e2pxsrF7Lbe1i"
     };
 
-    // this.search = this.search.bind(this);
-    // this.selectGif = this.selectGif.bind(this);
+    this.search = this.search.bind(this);
+    this.updateGif = this.updateGif.bind(this);
   }
 
   render() {
