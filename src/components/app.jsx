@@ -5,6 +5,8 @@ import SearchBar from './search-bar.jsx'
 import Gif from './gif.jsx'
 import GifList from './gif-list.jsx'
 
+const GIPHY_API_KEY = "nxjJ6nnoXszHOVIhzodwYxZYEy74VEIG"
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -12,7 +14,10 @@ class App extends Component {
     this.state = {
       gifs: [],
       selectedGifId: "e2pxsrF7Lbe1i"
-    }
+    };
+
+    // this.search = this.search.bind(this);
+    // this.selectGif = this.selectGif.bind(this);
   }
 
   render() {
@@ -33,15 +38,15 @@ class App extends Component {
 
   search = (query) => {
     //TODO API call
-    giphy('nxjJ6nnoXszHOVIhzodwYxZYEy74VEIG').search({
-      q: query,
-      rating: 'g',
-      limit: 10
-    }, (error, result) => {
-      this.setState({
-        gifs: result.data
-      });
-    });
+    const giphEndPoint = `https://api.giphy.com/v1/gifs/search?api_key=${GIPHY_API_KEY}&q=${query}&limit=10`
+    fetch(giphEndPoint)
+      .then(response => response.json())
+      .then((data) => {
+        const gifs = data.data.map(giph => giph.id)
+        this.setState({
+          gifs: gifs
+        })
+      })
   }
 
   updateGif = (id) => {
