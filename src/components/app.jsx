@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import giphy from 'giphy-api';
 
 import SearchBar from './search-bar.jsx'
 import Gif from './gif.jsx'
@@ -13,7 +12,7 @@ class App extends Component {
 
     this.state = {
       gifs: [],
-      selectedGifId: "e2pxsrF7Lbe1i"
+      selectedGifId: "TwtXMS5EnKDBK"
     };
 
     this.search = this.search.bind(this);
@@ -37,7 +36,6 @@ class App extends Component {
   }
 
   search = (query) => {
-    //TODO API call
     const giphEndPoint = `https://api.giphy.com/v1/gifs/search?api_key=${GIPHY_API_KEY}&q=${query}&limit=10`
     fetch(giphEndPoint)
       .then(response => response.json())
